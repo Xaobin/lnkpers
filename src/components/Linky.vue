@@ -6,7 +6,7 @@
     <label> Link </label>
     <input type="text"  class="border rounded bg-gray-500" ref="inputLink">
     </div>
-    <button class="bg-blue-700 hover:bg-blue-600 rounded px-4 py-2 mt-4" @click="separeLnk()">Get!</button>
+    <button class="bg-blue-700 hover:bg-blue-600 rounded px-4 py-2 mt-4" @click="getSomething2()">Get!</button>
 
 </div>
 </div>
@@ -38,19 +38,44 @@ export default {
                 console.log('-----');
                // console.log(xx);
             },
+            getSomething2(){
+                let lnk="https://www.youtube.com/embed/Su9lRqcvwDo";
+                 fetch (lnk)
+                .then(function(res){
+                    var rr=res;
+                     console.log('....');
+                       console.log(rr);  
+                })
+            },
+            getSomething(){
+                let ss=this.$refs.inputLink.value;
+                let seplkk=this.separeLnk(ss);
+                fetch ('https://www.youtube.com/watch?v='+seplkk)
+                .then(function(res){
+                    var rr=res;
+                     console.log('....');
+                       console.log(rr);  
+                })
+            },
             getTitle(lnk){
+                let title='';
                 fetch(lnk)
                     .then(function(res) {
-                        var body = res.text();
-                        var title = body.split('<title>')[1].split('</title>')[0]
+                        var body = res;
+                       // title = body.split('<title>')[1].split('</title>')[0]
+                       console.log('....');
+                       console.log(body);   
+                      // title=body;
                     })
-                    .catch(callback);
-                return title;    
+                    //.catch(callback);
+               // console.log('Suposto titulo: ');
+               // console.log(title);
+               // return title;    
             },
             separeLnk(){
                 let text=this.$refs.inputLink.value;
                // console.log();
-                console.log('Texto:'+text);
+              //  console.log('Texto:'+text);
                 text=text.replace('https://','');
                 text=text.replace('www.youtube.com','');
                 text=text.replace('/watch?v=','');
@@ -61,7 +86,7 @@ export default {
                     const myArray = text.split("&");
                     text = myArray[0];
                 }
-                console.log('pos texto: '+text);
+               // console.log('pos texto: '+text);
                 return text;
              
             },
