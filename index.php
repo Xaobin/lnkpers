@@ -34,13 +34,13 @@ function imgFeita($urr){
 $result="";
 $gatilho=0;
 $alink="";
-if (isset($_GET['inputLink'])){
-    $link=$_GET['inputLink'];
+if (isset($_POST['inputLink'])){
+    $link=$_POST['inputLink'];
     $gatilho=1;
 }
 if ($gatilho==1){
-    $alink=str_replace("http://www.youtube.com/watch?v=","",$link);
-    $alink=str_replace("http://youtu.be/","",$link);
+    $alink=str_replace("https://www.youtube.com/watch?v=","",$link);
+    $alink=str_replace("https://youtu.be/","",$link);
 
     if (strstr($alink,"&")){
         $arr=explode("&",$alink);
@@ -68,26 +68,30 @@ if ($gatilho==1){
     <title>Linvk</title>
   </head>
   <body class="bg-gray-800">
-   <form> 
+   <form action="index.php" method="POST"> 
     <div class="flex justify-center bg-gray-600">
         <div class="font-bold font-gray-100">Linvk</div> 
     </div>
   
-  <div class="container bg-gray-700" style="height='640px'">
+  <div class="container bg-gray-700" style="height:'740px'">
     <div class="  mx-10 pt-12   font-md font-gray-100">
        <div>
         <label> Link </label>
         <input type="text"  class="border rounded bg-gray-500" name="inputLink">
       </div>
         <div class="mt-2">
-            <submit class="bg-blue-700 hover:bg-blue-600 rounded px-4 py-2 mt-4">Get!</submit>
+            <br>
+            <submit class="bg-blue-700 hover:bg-blue-600 rounded px-4 py-2 mt-4 cursor-pointer">Get!</submit>
         </div>
         <div class="mt-6">
         <textarea class="border rounded bg-gray-500 h-40 w-60"><?php echo $result; ?></textarea>
         </div>
+
     </div>
+    <br><br><br>
   </div>  
 
 </form>
+
   </body>
 </html>
